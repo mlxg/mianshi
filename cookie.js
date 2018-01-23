@@ -21,3 +21,23 @@ function getCookie(name) {
     if (arr) console.log(arr[2]);
     return null;
 }
+
+//清缓存
+$.ajax({
+    url: 'www.haorooms.com',
+    dataType: 'json',
+    data: {},
+    ifModified: true,
+    cache: false,
+    beforeSend: function (xmlHttp) {
+        xmlHttp.setRequestHeader('If-Modified-Since', '0');
+        xmlHttp.setRequestHeader('Cache-Control', 'no-cache');
+    },
+    success: function (response) {
+        /*todo*/
+    },
+    async: false
+});
+
+// URL 参数后加上 "?ran=" + Math.random();
+// URL 参数后加上 "?times=" + new Date().getTime();
