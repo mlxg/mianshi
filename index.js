@@ -1,15 +1,33 @@
-/**
- * 定义需要在用户登录的时候获取到本地的数据字典类别
- */
-var clsCodes = {"clsCodes" :
-        ["BOOL",
-            "STATUS",
-            "USER_TYPE",
-            "REPORT_STATUS"
-        ]
-};
+$('.get_data').click(function () {
 
-/**
- * 获取数据字典到本地
- */
-var dicts;
+    var key = $('#user').val() + ':' + $('#pass').val();
+
+    //base64编码
+
+    var authKey = base64encode(key);
+
+    $.ajax({
+
+        type: 'GET',
+
+        dataType: 'json',
+
+        url: 'http://abc.cc/qrcode3/home/index/testajax',
+
+        headers: {'Authorization': 'Basic ' + authKey, 'lpy': 'lpy'},
+
+        success: function (data) {
+
+            alert(data.msg + '--' + data.user);
+
+        },
+
+        error: function (data) {
+
+            alert('error');
+
+        }
+
+    });
+
+});
